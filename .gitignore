@@ -1,0 +1,628 @@
+
+# Environment files with secrets
+*.env
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+.env.*
+
+# Sensitive configuration files
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Secrets.json
+secrets.json
+config.local.*
+
+# API Keys and certificates
+*.key
+*.pem
+*.pfx
+*.p12
+*.cer
+*.crt
+*.der
+
+# Database files (if using local DBs)
+*.db
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+
+# ===========================================
+# FRONTEND (React/Vite/Node.js)
+# ===========================================
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Vite specific
+.vite/
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# NYC test coverage
+.nyc_output
+
+# ESLint cache
+.eslintcache
+
+# Stylelint cache
+.stylelintcache
+
+# ===========================================
+# BACKEND (.NET Core/ASP.NET)
+# ===========================================
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# Visual Studio Code directories
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Benchmark Results
+BenchmarkDotNet.Artifacts/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User secrets
+UserSecrets/
+
+# ===========================================
+# AI MODEL (Python)
+# ===========================================
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Trained models and data
+*.model
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.weights
+models/
+checkpoints/
+data/raw/
+data/processed/
+
+# ===========================================
+# OPERATING SYSTEM FILES
+# ===========================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===========================================
+# IDE & EDITOR FILES
+# ===========================================
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio
+*.vspx
+*.sap
+
+# Visual Studio Code
+.history/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===========================================
+# TEMPORARY & LOG FILES
+# ===========================================
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# ===========================================
+# DEPLOYMENT & CLOUD
+# ===========================================
+# Azure
+.azure/
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose*.yml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# ===========================================
+# MISC
+# ===========================================
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Archive files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Large media files (add specific patterns as needed)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.mp3
+*.wav
+
+# ===========================================
+# PROJECT SPECIFIC
+# ===========================================
+# Sample data files (if you don't want to commit them)
+sample-data/
+test-data/
+seed-data/
+
+# Documentation builds
+docs/build/
+docs/_build/
+
+# Cache directories
+.cache/
+.temp/
+temp/
+
+# Local development certificates
+localhost.pfx
+localhost.pem
+
+# ===========================================
+# ADDITIONAL UNWANTED FILES
+# ===========================================
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
+# Uncomment if using NuGet 
+#*.nuget.props
+#*.nuget.targets
+
+# Node.js package manager artifacts
+.npm/
+.yarn/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Development database snapshots
+*.dacpac
+*.bak
+*.tmp
+*.temp
+
+# Redis dump files
+dump.rdb
+
+# MongoDB data files
+/data/
+mongod.lock
+
+# Local history for editors
+.history/
+
+# IntelliJ IDEA
+*.iws
+/out/
+
+# CodeRush personal settings
+.cr/personal
+
+# Python specific additions
+*.pyc
+*.pyo
+*.pyd
+.Python
+.python-version
+pyrightconfig.json
+
+# TypeScript specific
+*.tsbuildinfo
+
+# Sass cache
+.sass-cache/
+
+# PostCSS
+.postcss-cache/
+
+# Webpack
+.webpack/
+
+# Parcel
+.parcel-cache/
+
+# Next.js
+.next/
+
+# Svelte
+.svelte-kit/
+
+# SvelteKit build
+/build
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+.fleet
+.idea
+
+# OS generated files
+.DS_Store?
+Icon?
+
+# Network Trash Folder
+Network Trash Folder
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# JetBrains specific
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ESLint and Prettier
+.eslintrc.js
+.eslintrc.json
+.prettierrc
+.prettierrc.js
+.prettierrc.json
+
+# Husky
+.husky/_/
+
+# Local environment variables
+.env.backup
+.env.production
+.env.staging
+.env.test
+
+# Vercel
+.vercel
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Tailwind CSS
+tailwind.config.js.backup
+
+# Lock files (uncomment if you want to ignore them)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test artifacts
+TestResults/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Coverage reports
+lcov.info
+clover.xml
+
+# Dependency directories
+jspm_packages/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables file
+.env.test
+
+# Stores the currently configured language model
+.languagemodels
+
+# Auto-generated files
+**/auto-generated/
+**/generated/
+
+# Backup files
+*~
+*.swp
+*.swo
+*~
+
+# Lock files from package managers
+Pipfile.lock
+poetry.lock
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
