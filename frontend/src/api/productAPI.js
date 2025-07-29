@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5112/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5219/api';
 
 // Create axios instance with default config
 const apiClient = axios.create({
@@ -38,25 +38,32 @@ apiClient.interceptors.response.use(
 // Product API functions
 export const productAPI = {
   // Get all products with optional filters
-  getAll: (params = {}) => apiClient.get('/product', { params }),
+  getAllProducts: (params = {}) => apiClient.get('/products', { params }),
   
   // Get single product by ID
-  getById: (id) => apiClient.get(`/product/${id}`),
+  getProduct: (id) => apiClient.get(`/products/${id}`),
   
   // Create new product
-  create: (productData) => apiClient.post('/product', productData),
+  createProduct: (productData) => apiClient.post('/products', productData),
   
   // Update existing product
-  update: (id, productData) => apiClient.put(`/product/${id}`, productData),
+  updateProduct: (id, productData) => apiClient.put(`/products/${id}`, productData),
   
   // Delete product
-  delete: (id) => apiClient.delete(`/product/${id}`),
+  deleteProduct: (id) => apiClient.delete(`/products/${id}`),
+  
+  // Legacy methods for backward compatibility
+  getAll: (params = {}) => apiClient.get('/products', { params }),
+  getById: (id) => apiClient.get(`/products/${id}`),
+  create: (productData) => apiClient.post('/products', productData),
+  update: (id, productData) => apiClient.put(`/products/${id}`, productData),
+  delete: (id) => apiClient.delete(`/products/${id}`),
   
   // Get product categories
-  getCategories: () => apiClient.get('/product/categories'),
+  getCategories: () => apiClient.get('/products/categories'),
   
   // Get low stock products
-  getLowStock: (threshold = 10) => apiClient.get('/product/low-stock', { params: { threshold } })
+  getLowStock: (threshold = 10) => apiClient.get('/products/low-stock', { params: { threshold } })
 };
 
 // Sales API functions
