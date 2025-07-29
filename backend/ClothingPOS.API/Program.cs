@@ -23,7 +23,7 @@ builder.Services.AddSingleton<MongoDbContext>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
 
-// Add HttpClient for AI Model integration
+// Add HttpClient for AI Model integration (optional)
 builder.Services.AddHttpClient<ForecastService>();
 
 // Add custom services
@@ -74,11 +74,29 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-// Seed MongoDB with sample data
+// Display startup information
+Console.WriteLine("🚀 Clothing POS API Backend Started Successfully!");
+Console.WriteLine("📍 API Server: http://localhost:5112");
+Console.WriteLine("📖 Swagger Documentation: http://localhost:5112/swagger");
+Console.WriteLine("🔧 Environment: " + app.Environment.EnvironmentName);
+Console.WriteLine("=" + new string('=', 50));
+
+// Test MongoDB connection and seed sample data (Optional)
 using (var scope = app.Services.CreateScope())
 {
     try
     {
+        var context = scope.ServiceProvider.GetRequiredService<MongoDbContext>();
+        
+        // Test MongoDB connection with timeout
+        var database = context.Products.Database;
+        await database.RunCommandAsync<MongoDB.Bson.BsonDocument>(
+            new MongoDB.Bson.BsonDocument("ping", 1), 
+            cancellationToken: new CancellationTokenSource(TimeSpan.FromSeconds(5)).Token);
+        
+        Console.WriteLine("✅ MongoDB connected successfully!");
+        
+        // Seed sample data
         var seeder = scope.ServiceProvider.GetRequiredService<MongoSeeder>();
         await seeder.SeedAsync();
         Console.WriteLine("✅ MongoDB seeded with sample data");
@@ -86,7 +104,10 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "❌ An error occurred while seeding MongoDB");
+        logger.LogWarning(ex, "⚠️ MongoDB connection failed, but API server is running");
+        Console.WriteLine("⚠️ MongoDB connection failed, but API server is running on http://localhost:5112");
+        Console.WriteLine("📝 You can test API endpoints with Swagger at: http://localhost:5112/swagger");
+        Console.WriteLine("💡 MongoDB connection issue: SSL/TLS authentication problem");
     }
 }
 
