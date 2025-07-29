@@ -8,21 +8,7 @@ A comprehensive Point of Sale (POS) system for clothing stores with AI-powered s
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green)
 ![Python](https://img.shields.io/badge/Python-3.9+-yellow)
 
-## 📋 Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Technology Stack](#-technology-stack)
-- [Project Structure](#-project-structure)
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Running the Application](#-running-the-application)
-- [API Documentation](#-api-documentation)
-- [Database Schema](#-database-schema)
-- [AI Model](#-ai-model)
-- [Contributing](#-contributing)
-- [License](#-license)
 
 ## Overview
 
