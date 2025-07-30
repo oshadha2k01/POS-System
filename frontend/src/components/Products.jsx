@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
+import NavBar from "./NavBar";
 import { productAPI } from "../api/productAPI";
+import { FiEye, FiEdit3, FiTrash2, FiPlus } from "react-icons/fi";
+import ProductForm from "./ProductForm";
+import Swal from "sweetalert2";
+import { motion } from "framer-motion";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -8,6 +13,7 @@ const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Fetch products from database
   const fetchProducts = async () => {
@@ -60,31 +66,49 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <>
+      <NavBar />
+      <motion.div 
+        className={`min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 transition-all duration-300 pt-22 ${
+          isModalOpen ? 'blur-sm brightness-75' : ''
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
       <div className="max-w-7xl mx-auto py-4 px-3 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-4">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0 bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-3xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Products
-            </h2>
-          </div>
-        </div>
+        {/* Add Product button moved to search/filter row below */}
 
         {/* Search and Filter */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
-          <div className="md:col-span-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4 items-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.div 
+            className="md:col-span-4 mr-6"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             <div className="relative">
               <input
                 type="text"
-                className="w-full px-4 py-3 pl-12 text-gray-700 bg-white border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none transition-all duration-200"
+                className="w-full max-w-xs px-4 py-3 pl-12 text-gray-700 bg-white border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none transition-all duration-200"
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-          </div>
-          <div className="md:col-span-3">
+          </motion.div>
+          <motion.div 
+            className="md:col-span-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
             <select
               className="w-full px-4 py-3 text-gray-700 bg-white border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring focus:ring-blue-200 focus:outline-none transition-all duration-200"
               value={selectedCategory}
@@ -97,15 +121,35 @@ const Products = () => {
                 </option>
               ))}
             </select>
-          </div>
-          <div className="md:col-span-3">
-            <div className="flex items-center h-full px-4 py-3 text-gray-600 bg-gray-100 rounded-lg">
+          </motion.div>
+          <motion.div 
+            className="md:col-span-4 max-w-xs"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            <div className="flex items-center h-full px-3 py-2 text-gray-600 bg-gray-100 rounded-lg">
               <span className="text-sm font-medium">
                 Showing {filteredProducts.length} of {products.length} products
               </span>
             </div>
-          </div>
-        </div>
+          </motion.div>
+          <motion.div
+            className="md:col-span-1 flex justify-end"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <motion.button
+              onClick={() => setIsModalOpen(true)}
+              className="flex flex-row items-center gap-2 px-10 py-3 min-w-[180px] ml-6 text-white bg-gradient-to-r from-blue-600 to-blue-800 border border-blue-800 rounded-xl hover:from-blue-700 hover:to-blue-900 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-200 font-semibold shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="whitespace-nowrap">Add Product</span>
+            </motion.button>
+          </motion.div>
+        </motion.div>
 
         {/* Loading State */}
         {loading && (
@@ -178,10 +222,30 @@ const Products = () => {
 
         {/* Products Grid */}
         {!loading && !error && filteredProducts.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="mb-4">
-                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            {filteredProducts.map((product, index) => (
+              <motion.div 
+                key={product.id} 
+                className="mb-4"
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.9 + (index * 0.1),
+                  ease: "easeOut"
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  y: -8,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                   <div className="p-6 flex flex-col flex-grow">
                     {/* Product Name */}
                     <h5 className="text-xl font-bold text-gray-800 mb-3 line-clamp-2">
@@ -205,49 +269,85 @@ const Products = () => {
                     {/* Action Buttons */}
                     <div className="mt-auto">
                       <div className="flex space-x-2">
-                        <button
+                        <motion.button
                           type="button"
-                          className="flex-1 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors duration-200"
+                          className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors duration-200"
                           onClick={() =>
                             console.log("View product:", product.id)
                           }
                           title="View Details"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
+                          <FiEye className="w-4 h-4" />
                           View
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
                           type="button"
-                          className="flex-1 px-3 py-2 text-sm font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                          className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-sm font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                           onClick={() =>
                             console.log("Edit product:", product.id)
                           }
                           title="Edit Product"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
+                          <FiEdit3 className="w-4 h-4" />
                           Edit
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
                           type="button"
-                          className="flex-1 px-3 py-2 text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-colors duration-200"
+                          className="flex-1 flex items-center justify-center gap-1 px-3 py-2 text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 transition-colors duration-200"
                           onClick={() => {
-                            if (window.confirm(`Delete "${product.name}"?`)) {
-                              console.log("Delete product:", product.id);
-                              // Add delete functionality here
-                            }
+                            Swal.fire({
+                              title: "Delete Product?",
+                              text: `Are you sure you want to delete "${product.name}"? This action cannot be undone.`,
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#dc2626",
+                              cancelButtonColor: "#1e40af",
+                              confirmButtonText: "Yes, delete it!",
+                              cancelButtonText: "Cancel"
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                // Add delete functionality here
+                                console.log("Delete product:", product.id);
+                                Swal.fire({
+                                  title: "Deleted!",
+                                  text: "Product has been deleted.",
+                                  icon: "success",
+                                  confirmButtonColor: "#1e40af",
+                                  timer: 2000,
+                                  timerProgressBar: true,
+                                });
+                              }
+                            });
                           }}
                           title="Delete Product"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
+                          <FiTrash2 className="w-4 h-4" />
                           Delete
-                        </button>
+                        </motion.button>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
-    </div>
+      </motion.div>
+
+      {/* Product Form Modal */}
+      <ProductForm
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onProductAdded={fetchProducts}
+      />
+    </>
   );
 };
 
